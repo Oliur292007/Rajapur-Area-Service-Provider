@@ -58,3 +58,12 @@ Hosted migration history:
 5. Revoke access from Manager Access when the assignment ends.
 
 New manager-created rows in the supported tables are visible according to the existing public active-record policies. Managers should only enter information they are authorized to maintain. All changes are auditable.
+
+
+## Healthcare publication safeguards
+
+- New doctor profiles and doctor schedules default to inactive drafts in both the portal and database.
+- Managers must explicitly publish a doctor profile and each chamber schedule after confirming current details with the facility.
+- Doctor schedules are constrained by a composite foreign key so a manager cannot associate a doctor from another organization with their assigned clinic.
+- Doctor schedule forms require a selected doctor, weekday, valid start time, and later end time.
+- See `docs/HEALTHCARE_MANAGER_PUBLICATION_PASS_2.md` for implementation and verification details.
