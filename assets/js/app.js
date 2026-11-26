@@ -198,7 +198,9 @@ function setupControls() {
     localStorage.setItem('rasp-language', language);
     applyLanguage();
   });
-  document.getElementById('categorySearch').addEventListener('input', event => handleGlobalSearch(event.target.value));\n  document.addEventListener('click', event => { if (!event.target.closest('.global-search-wrap')) { document.getElementById('globalSearchResults').hidden = true; document.getElementById('categorySearch').setAttribute('aria-expanded','false'); } });\n  document.getElementById('categorySearch').addEventListener('keydown', event => { if (event.key === 'Escape') { document.getElementById('globalSearchResults').hidden = true; event.target.setAttribute('aria-expanded','false'); } });
+  document.getElementById('categorySearch').addEventListener('input', event => handleGlobalSearch(event.target.value));
+  document.addEventListener('click', event => { if (!event.target.closest('.global-search-wrap')) { document.getElementById('globalSearchResults').hidden = true; document.getElementById('categorySearch').setAttribute('aria-expanded','false'); } });
+  document.getElementById('categorySearch').addEventListener('keydown', event => { if (event.key === 'Escape') { document.getElementById('globalSearchResults').hidden = true; event.target.setAttribute('aria-expanded','false'); } });
   const menuToggle = document.getElementById('menuToggle');
   const mobileNav = document.getElementById('mobileNav');
   menuToggle.addEventListener('click', () => {
