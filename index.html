@@ -49,10 +49,13 @@
         <span class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">YOUR LOCAL DIRECTORY</span></span>
         <h1 data-i18n="heroTitle">Everything in Rajapur,<br><em>all in one place.</em></h1>
         <p data-i18n="heroText">Discover trusted local information, essential services and useful places around your community.</p>
-        <div class="hero-search">
-          <span class="search-icon" aria-hidden="true">⌕</span>
-          <input id="categorySearch" type="search" autocomplete="off" placeholder="Search services and categories..." data-i18n-placeholder="searchPlaceholder">
-          <kbd>⌘ K</kbd>
+        <div class="global-search-wrap">
+          <div class="hero-search">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="categorySearch" type="search" autocomplete="off" aria-controls="globalSearchResults" aria-expanded="false" placeholder="Search services, doctors, places..." data-i18n-placeholder="searchPlaceholder">
+            <kbd>⌘ K</kbd>
+          </div>
+          <div id="globalSearchResults" class="global-search-results" role="listbox" aria-label="Search results" hidden></div>
         </div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> <span data-i18n="location">Rajapur, Jhalakathi, Bangladesh</span></p>
       </div>
