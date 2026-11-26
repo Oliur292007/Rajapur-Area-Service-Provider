@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doctors, specialties and appointment schedules at healthcare facilities in Rajapur.">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="robots" content="index,follow">
+  <title>Doctors & Schedules | Rajapur Area Services</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Rajapur Area Services home"><img src="logo.png" alt="" class="brand-logo"><span class="brand-copy"><strong>Rajapur</strong><small>Area Services</small></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="index.html" data-i18n="navHome">Home</a><a href="about.html" data-i18n="navAbout">About</a><a href="category.html?slug=emergency-contacts" data-i18n="navEmergency">Emergency</a></nav>
+    <div class="header-actions">
+      <button class="icon-button language-toggle" id="languageToggle" type="button" aria-label="Change language">বাংলা</button>
+      <label class="theme-control"><span class="sr-only" data-i18n="themeLabel">Theme</span><select id="themeSelect" aria-label="Theme"><option value="system" data-i18n="themeSystem">System</option><option value="light" data-i18n="themeLight">Light</option><option value="dark" data-i18n="themeDark">Dark</option></select></label>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span><span class="sr-only" data-i18n="menu">Menu</span></button>
+    </div>
+  </div><nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation"><a href="index.html" data-i18n="navHome">Home</a><a href="about.html" data-i18n="navAbout">About</a><a href="category.html?slug=emergency-contacts" data-i18n="navEmergency">Emergency</a></nav></header>
+  <main id="main" class="directory-page section-wrap healthcare-detail-page">
+    <div class="breadcrumb"><a href="index.html" data-i18n="navHome">Home</a><span>/</span><a href="category.html?slug=healthcare" data-i18n="healthcare">Healthcare</a><span>/</span><span id="breadcrumbOrganization">Facility</span></div>
+    <section class="directory-hero"><span class="section-kicker" data-i18n="detailKicker">DOCTORS & APPOINTMENTS</span><h1 id="facilityTitle">Loading facility…</h1><p id="facilityDescription"></p><p id="facilityAddress" class="facility-address"></p></section>
+    <section class="doctor-section-heading"><div><h2 data-i18n="doctorsHeading">Doctors & schedules</h2><p data-i18n="doctorsIntro">Check each doctor's available chamber days and appointment details.</p></div><span id="doctorCount" class="record-count" aria-live="polite"></span></section>
+    <div class="directory-search doctor-search"><span aria-hidden="true">⌕</span><input id="doctorSearch" type="search" autocomplete="off" placeholder="Search doctors or specialties…" data-i18n-placeholder="doctorSearch"></div>
+    <section id="doctorGrid" class="record-grid doctor-grid" aria-live="polite"><div class="loading-state"><span class="loader"></span><span data-i18n="loading">Loading…</span></div></section>
+    <p id="directoryStatus" class="status-message" role="status"></p>
+    <a class="back-link" href="category.html?slug=healthcare">← <span data-i18n="backHealthcare">Back to healthcare directory</span></a>
+  </main>
+  <footer class="site-footer"><div class="footer-main section-wrap">
+    <div class="footer-brand"><a class="brand footer-logo" href="index.html"><img src="logo.png" alt=""><span class="brand-copy"><strong>Rajapur</strong><small>Area Services</small></span></a><p data-i18n="footerAbout">Connecting people with the information and services that matter locally.</p><div class="social-links"><a href="https://facebook.com/profile.php?id=61554547630245" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a><a href="https://www.youtube.com/@rpst2022" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a></div></div>
+    <div class="footer-column"><h3 data-i18n="quickLinks">Quick links</h3><a href="index.html" data-i18n="navHome">Home</a><a href="category.html?slug=healthcare" data-i18n="healthcare">Healthcare</a><a href="category.html?slug=emergency-contacts" data-i18n="navEmergency">Emergency contacts</a></div>
+    <div class="footer-column"><h3 data-i18n="contact">Contact</h3><a href="mailto:rpst.rajapur@gmail.com">rpst.rajapur@gmail.com</a><a href="https://rajapur.jhalakathi.gov.bd/" target="_blank" rel="noopener noreferrer" data-i18n="upazilaSite">Rajapur Upazila</a><span>Rajapur Pilot Science and Technology Club (RPST)</span></div>
+  </div><div class="footer-bottom section-wrap"><span>© <span id="currentYear"></span> Rajapur Area Services · RPST</span><span>Developed by <a href="https://oliur-portfolio-github.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>MD Oliur Rahman</strong></a></span></div></footer>
+  <script type="module" src="assets/js/healthcare.js"></script>
+</body></html>
