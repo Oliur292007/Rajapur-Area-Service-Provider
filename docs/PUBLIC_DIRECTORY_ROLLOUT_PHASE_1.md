@@ -6,22 +6,22 @@ Production domain: https://amader-rajapur.vercel.app
 
 ## Verified database inventory
 
-- Transport operators: 14 total, 0 active.
-- Healthcare organizations: 3 total, 0 active.
+- Transport operators: 14 total, 14 public directory entries, 0 operationally active.
+- Healthcare organizations: 3 total, 3 public directory entries, 0 operationally active.
 - Doctor profiles: 0.
 - Bus routes: 1 total, 1 active.
 - Bus schedules: 1 total, 1 active.
 - The current schedule is linked to Sakura Paribahan Pvt. Ltd. and the route Rajapur to Dhaka.
 
-The 14 transport operator master records and 3 healthcare organization master records came from the archived legacy directory index. They contain names only and are marked inactive pending current operational verification. Their presence in the database is not proof that their current routes, services, phone numbers, or operating status remain accurate.
+The 14 transport operator master records and 3 healthcare organization master records came from the archived legacy directory index. Their names are now visible as public directory entries, but their operational `is_active` status remains false until current operations are verified. Public cards show a verification notice. Their presence in the directory is not proof that current routes, services, phone numbers, or operating status remain accurate.
 
 ## Phase 1 fixes
 
-1. Consolidated the public transport-operator SELECT policy so visitors can read:
-   - active operators; and
-   - an otherwise inactive operator only when it is linked to an active route and active schedule.
-2. Verified with the PostgreSQL `anon` role that the active Sakura schedule can now resolve and read the linked operator name even though the operator master row remains inactive.
-3. Updated the healthcare directory frontend to query active organizations and render their public organization details alongside active doctors and published healthcare listings. This ensures clinics will appear when the Super Admin activates their verified records.
+1. Added separate `is_public` visibility flags for transport operators and healthcare organizations, distinct from their operational `is_active` state.
+2. Marked all 14 legacy transport operator names and all 3 healthcare organization names as public directory entries, without activating them operationally.
+3. Updated public RLS policies so visitors can read public directory entries. Transport operators linked to an active public schedule can also be resolved.
+4. Verified with the PostgreSQL `anon` role that all 14 operator names and all 3 clinic/hospital names are visible, and that the active Sakura schedule can resolve its operator name even though the operator remains operationally inactive.
+5. Updated the transport and healthcare frontend to show public directory entries with a localized verification notice, while keeping inactive operational records clearly distinguished from active providers.
 
 ## Legacy healthcare source review
 
