@@ -30,12 +30,17 @@ Production domain: https://amader-rajapur.vercel.app
 - Manager Portal loads only the assigned institution's teachers.
 - Managers can add, edit and delete teacher profiles, with RLS enforcing institution scope.
 - New teacher profiles default to draft; explicit publish checkbox required.
-- Public phone is shown only when the manager records the teacher's explicit consent.
+- Public phone is shown only when the manager records the teacher's explicit consent. Consented numbers are synchronized to a separate `teacher_public_contacts` table; anonymous clients cannot read the base `teachers.public_phone` column.
+- Public teacher profiles are served through `public.public_teachers`, a `security_invoker` view that applies underlying RLS policies and joins only consented phone rows.
 - Changes are recorded by the existing section manager audit trigger.
 
 ## Database
 
-Migration: `20261127100000_education_institutions_teachers_manager_scope.sql`
+Migrations:
+- `20261127100000_education_institutions_teachers_manager_scope.sql`
+- `20261127101000_seed_legacy_education_names_private.sql`
+- `20261127102000_public_teacher_safe_view.sql`
+- `20261127103000_teacher_public_contact_privacy_hardening.sql`
 
 - Added `educational_institutions` and `teachers` with RLS enabled.
 - Public read is restricted to public/active institutions and active teacher profiles.
@@ -50,6 +55,7 @@ Migration: `20261127100000_education_institutions_teachers_manager_scope.sql`
 - Manager administration Edge Function `section-manager-admin` deployed with JWT verification enabled (version 4).
 - Supabase Security Advisor reports only the existing Leaked Password Protection Disabled warning.
 - 46 approved legacy school/college names were staged for verification and manager assignment with no contact numbers, no teacher profiles, `is_public=false` and `is_active=false`. They are not publicly visible; no legacy teachers or teacher contact details were imported.
+- Anonymous direct SELECT on `teachers` is denied; only the public-safe view is readable. Column-level privilege check confirms anonymous users cannot read `teachers.public_phone`.
 - Browser-level visual tests and non-admin manager JWT CRUD tests remain outstanding.
 
 ## Admin workflow
