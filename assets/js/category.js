@@ -1,7 +1,8 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const supabase = createClient('https://kapuhxccffmjgeszixxh.supabase.co','sb_publishable_pr-6-lthGkKlq8RNoxwmqg_X4pqblAV');
 const params = new URLSearchParams(location.search);
-const slug = params.get('slug') || '';\nconst initialQuery = params.get('q') || '';
+const slug = params.get('slug') || '';
+const initialQuery = params.get('q') || '';
 let records = [];
 let language = localStorage.getItem('rasp-language') || 'en';
 const copy = {
