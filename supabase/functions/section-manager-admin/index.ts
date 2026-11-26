@@ -4,7 +4,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const originAllowed = "https://amader-rajapur.vercel.app";
 const cors = {"Access-Control-Allow-Origin":originAllowed,"Access-Control-Allow-Headers":"authorization, apikey, content-type, x-client-info","Access-Control-Allow-Methods":"GET, POST, PATCH, OPTIONS","Vary":"Origin"};
 const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...cors,"Content-Type":"application/json","Cache-Control":"no-store"}});
-const allowedTarget=new Set(["transport_operator","organization"]);
+const allowedTarget=new Set(["transport_operator","organization","educational_institution"]);
 const permissionKeys=["view","add","edit","delete"];
 
 Deno.serve(async(req:Request)=>{
@@ -19,14 +19,15 @@ Deno.serve(async(req:Request)=>{
  if(authError||!user||user.app_metadata?.role!=="admin")return json({error:"Admin access required"},403);
  const db=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
  if(req.method==="GET"){
-  const [ops,orgs,assignments]=await Promise.all([
+  const [ops,orgs,schools,assignments]=await Promise.all([
    db.from("transport_operators").select("id,name").order("name"),
    db.from("organizations").select("id,name,organization_type").order("name"),
+   db.from("educational_institutions").select("id,name,institution_type").order("name"),
    db.from("section_manager_assignments").select("*").order("created_at",{ascending:false})
   ]);
-  const err=ops.error||orgs.error||assignments.error;if(err)return json({error:"Could not load manager data"},500);
-  const users=await Promise.all((assignments.data||[]).map(async(a:any)=>{const u=await db.auth.admin.getUserById(a.user_id);return {...a,email:u.data.user?.email||"Unknown account",target_name:a.target_type==="transport_operator"?(ops.data||[]).find((x:any)=>x.id===a.target_id)?.name:(orgs.data||[]).find((x:any)=>x.id===a.target_id)?.name||"Unknown target"};}));
-  return json({operators:ops.data||[],organizations:orgs.data||[],assignments:users});
+  const err=ops.error||orgs.error||schools.error||assignments.error;if(err)return json({error:"Could not load manager data"},500);
+  const users=await Promise.all((assignments.data||[]).map(async(a:any)=>{const u=await db.auth.admin.getUserById(a.user_id);return {...a,email:u.data.user?.email||"Unknown account",target_name:a.target_type==="transport_operator"?(ops.data||[]).find((x:any)=>x.id===a.target_id)?.name:a.target_type==="educational_institution"?(schools.data||[]).find((x:any)=>x.id===a.target_id)?.name:(orgs.data||[]).find((x:any)=>x.id===a.target_id)?.name||"Unknown target"};}));
+  return json({operators:ops.data||[],organizations:orgs.data||[],educationalInstitutions:schools.data||[],assignments:users});
  }
  let body:any;try{body=await req.json();}catch{return json({error:"Invalid JSON"},400);}
  if(req.method==="POST"){
