@@ -50,3 +50,29 @@
     flex-basis: 37px;
   }
 }
+
+
+/* Footer markup uses an unclassed img inside .footer-logo; constrain that actual element. */
+.site-footer .footer-logo img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  max-width: 42px;
+  min-height: 42px;
+  max-height: 42px;
+  flex: 0 0 42px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+@media (max-width: 650px) {
+  .site-footer .footer-logo img {
+    width: 37px;
+    height: 37px;
+    min-width: 37px;
+    max-width: 37px;
+    min-height: 37px;
+    max-height: 37px;
+    flex-basis: 37px;
+  }
+}
