@@ -6,7 +6,7 @@ Status: Initial schema applied and verified.
 
 ## Applied schema
 
-The dedicated Supabase project currently contains 23 tables. All 23 tables have Row Level Security (RLS) enabled.
+The dedicated Supabase project currently contains 24 tables. All 24 tables have Row Level Security (RLS) enabled.
 
 ### Accounts and access
 - `profiles` — user profile details linked to Supabase Auth.
@@ -71,6 +71,7 @@ The following migrations were applied to the hosted project:
 - `20261126164748_security_and_index_hardening`
 - `20261126164807_workflow_privileges_and_initial_categories`
 - `20261126164823_restrict_anon_api_table_grants`
+- `20261126164907_legacy_content_staging`
 
 ## Next steps
 
@@ -92,3 +93,7 @@ Initial archive:
 - All staging rows remain `pending`; no legacy donor, doctor, school, or other public records have been automatically published.
 
 The staging table is admin-only. Records must be reviewed and mapped into their destination tables before publication.
+
+## Version-controlled SQL migrations
+
+The five applied SQL migrations are also stored in `supabase/migrations/` in this repository. Keep future database changes in new timestamped migration files and apply them in order.
