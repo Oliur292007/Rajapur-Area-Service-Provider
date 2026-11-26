@@ -79,3 +79,16 @@ The following migrations were applied to the hosted project:
 3. Import content in batches and verify record counts.
 4. Connect the existing frontend to Supabase only after the import structure is validated.
 5. Add Storage buckets and controlled upload policies before moving images to Supabase Storage.
+
+## Legacy content staging
+
+A private `legacy_content_staging` table was added for a safe, non-destructive migration. It contains a snapshot of each source HTML page, extracted plain text, headings, internal/external links, image paths, and the source Git blob SHA.
+
+Initial archive:
+- 39 HTML paths captured from the repository tree.
+- 38 pages contain HTML; `navbar.html` is an empty placeholder.
+- 264,775 characters of source HTML preserved.
+- 443 headings, 322 image references and 496 internal-link references indexed.
+- All staging rows remain `pending`; no legacy donor, doctor, school, or other public records have been automatically published.
+
+The staging table is admin-only. Records must be reviewed and mapped into their destination tables before publication.
