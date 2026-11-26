@@ -27,7 +27,11 @@ The dedicated Supabase project currently contains 24 tables. All 24 tables have 
 - `places` — important locations, tourism and heritage records.
 - `area_statistics` — structured Rajapur area statistics with source and reference period.
 
-### Service marketplace
+### Organization and section manager access
+- `section_manager_assignments` — scoped manager assignments for a single transport operator or organization, with view/add/edit/delete permissions.
+- `section_manager_audit_logs` — immutable-style audit history for manager-controlled data changes, readable by Super Admins only.
+
+## Service marketplace
 - `service_providers` — provider accounts and verification status.
 - `services` — provider service listings.
 - `service_requests` — customer requests.
