@@ -200,7 +200,11 @@ function setupControls() {
   });
   document.getElementById('categorySearch').addEventListener('input', event => handleGlobalSearch(event.target.value));
   document.addEventListener('click', event => { if (!event.target.closest('.global-search-wrap')) { document.getElementById('globalSearchResults').hidden = true; document.getElementById('categorySearch').setAttribute('aria-expanded','false'); } });
-  document.getElementById('categorySearch').addEventListener('keydown', event => { if (event.key === 'Escape') { document.getElementById('globalSearchResults').hidden = true; event.target.setAttribute('aria-expanded','false'); } });
+  document.getElementById('categorySearch').addEventListener('keydown', event => {
+    const panel = document.getElementById('globalSearchResults');
+    if (event.key === 'Escape') { panel.hidden = true; event.target.setAttribute('aria-expanded','false'); }
+    if (event.key === 'Enter' && !panel.hidden) { const first = panel.querySelector('a.global-search-result'); if (first) { event.preventDefault(); first.click(); } }
+  });
   const menuToggle = document.getElementById('menuToggle');
   const mobileNav = document.getElementById('mobileNav');
   menuToggle.addEventListener('click', () => {
