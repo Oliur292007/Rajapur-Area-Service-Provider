@@ -75,3 +75,7 @@ END;
 $function$;
 CREATE TRIGGER audit_educational_institutions_changes AFTER INSERT OR UPDATE OR DELETE ON public.educational_institutions FOR EACH ROW EXECUTE FUNCTION public.log_section_manager_change();
 CREATE TRIGGER audit_teachers_changes AFTER INSERT OR UPDATE OR DELETE ON public.teachers FOR EACH ROW EXECUTE FUNCTION public.log_section_manager_change();
+
+ALTER TABLE public.teachers ADD COLUMN consent_public_phone boolean NOT NULL DEFAULT false;
+CREATE TRIGGER set_educational_institutions_updated_at BEFORE UPDATE ON public.educational_institutions FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
+CREATE TRIGGER set_teachers_updated_at BEFORE UPDATE ON public.teachers FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
