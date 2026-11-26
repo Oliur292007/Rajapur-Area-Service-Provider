@@ -37,7 +37,7 @@ async function init(){
  try{
   const org=await supabase.from('organizations').select('id,name,address,phone,website_url,description,is_active,is_public').eq('id',organizationId).or('is_public.eq.true,is_active.eq.true').maybeSingle();
   if(org.error)throw org.error;if(!org.data)throw new Error('Facility unavailable');
-  $('facilityTitle').textContent=org.data.name;$('breadcrumbOrganization').textContent=org.data.name;$('facilityDescription').textContent=org.data.description||(org.data.is_active?'':t('pending'));$('facilityAddress').textContent=org.data.address||'';
+  $('facilityTitle').textContent=org.data.name;$('breadcrumbOrganization').textContent=org.data.name;$('facilityDescription').textContent=org.data.description||(org.data.is_active?'':t('pending'));$('facilityAddress').textContent=org.data.address||'';$('facilityContact').innerHTML=(org.data.phone?'<a class="record-call" href="tel:'+esc(org.data.phone.replace(/[^+0-9]/g,''))+'">'+t('call')+': '+esc(org.data.phone)+'</a>':'')+(safeImage(org.data.website_url)?'<a class="record-external" href="'+esc(safeImage(org.data.website_url))+'" target="_blank" rel="noopener noreferrer">'+(language==='bn'?'ওয়েবসাইট':'Website')+' ↗</a>':'');
   const [d,s]=await Promise.all([
    supabase.from('doctors').select('id,full_name,specialty,qualifications,bio,photo_url,appointment_phone').eq('organization_id',organizationId).eq('is_active',true).order('full_name'),
    supabase.from('doctor_schedules').select('id,doctor_id,weekday,start_time,end_time,schedule_note,appointment_phone').eq('organization_id',organizationId).eq('is_active',true).order('weekday').order('start_time')
