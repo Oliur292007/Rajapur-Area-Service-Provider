@@ -119,7 +119,7 @@ function showSearchMessage(message, busy = false) {
   document.getElementById('categorySearch').setAttribute('aria-expanded', 'true');
 }
 function searchOr(columns, term) {
-  const safe = term.replace(/[%,_()"\\\\]/g, ' ').replace(/\\s+/g, ' ').trim();
+  const safe = term.replace(/[%,_()"\\]/g, ' ').replace(/\s+/g, ' ').trim();
   return columns.map(column => column + '.ilike.%' + safe + '%').join(',');
 }
 function searchTarget(slug, term) {
