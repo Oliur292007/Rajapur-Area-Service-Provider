@@ -49,14 +49,14 @@ Migration: `20261127100000_education_institutions_teachers_manager_scope.sql`
 - Schema and policies created successfully in Supabase project `kapuhxccffmjgeszixxh`.
 - Manager administration Edge Function `section-manager-admin` deployed with JWT verification enabled (version 4).
 - Supabase Security Advisor reports only the existing Leaked Password Protection Disabled warning.
-- At implementation time there are 0 institution rows and 0 teacher profiles; no legacy school/teacher records were automatically imported or published.
+- 46 approved legacy school/college names were staged for verification and manager assignment with no contact numbers, no teacher profiles, `is_public=false` and `is_active=false`. They are not publicly visible; no legacy teachers or teacher contact details were imported.
 - Browser-level visual tests and non-admin manager JWT CRUD tests remain outstanding.
 
 ## Admin workflow
 
 1. Open `/admin/managers.html` and sign in as Super Admin.
 2. Add a school/college/institute under Education Institutions.
-3. Enable public card visibility after confirming the institution name; leave operational verification off until details are checked.
+3. Review the staged legacy institution name, correct it if needed, then enable public card visibility only after confirming the institution name; leave operational verification off until operational details are checked.
 4. Register the manager account through `/manager/`.
 5. Assign that account to the institution with the required permissions.
 6. Manager adds teacher profiles as drafts and publishes only confirmed records.
