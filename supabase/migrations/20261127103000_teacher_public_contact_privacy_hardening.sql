@@ -46,6 +46,7 @@ AS $function$
 DECLARE v_target_type text; v_target_id uuid; v_row_id uuid; v_old jsonb; v_new jsonb; v_teacher_id uuid;
 BEGIN
  v_row_id:=coalesce((to_jsonb(new)->>'id')::uuid,(to_jsonb(old)->>'id')::uuid);
+ IF tg_table_name='teacher_public_contacts' THEN v_row_id:=coalesce((to_jsonb(new)->>'teacher_id')::uuid,(to_jsonb(old)->>'teacher_id')::uuid); END IF;
  IF tg_table_name IN ('transport_operators','bus_routes','bus_schedules') THEN
   v_target_type:='transport_operator';
   IF tg_table_name='transport_operators' THEN v_target_id:=v_row_id;
