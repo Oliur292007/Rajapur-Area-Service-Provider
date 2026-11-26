@@ -67,3 +67,13 @@ New manager-created rows in the supported tables are visible according to the ex
 - Doctor schedules are constrained by a composite foreign key so a manager cannot associate a doctor from another organization with their assigned clinic.
 - Doctor schedule forms require a selected doctor, weekday, valid start time, and later end time.
 - See `docs/HEALTHCARE_MANAGER_PUBLICATION_PASS_2.md` for implementation and verification details.
+
+
+## Education institution manager scope
+
+- `educational_institution`: one school, college, madrasa or other educational institution. The manager can add, edit and delete teacher profiles for that institution only.
+- Teacher profiles default to draft (`is_active=false`). Managers must explicitly publish each teacher after confirming the information.
+- Public teacher phone numbers are hidden unless the manager records explicit consent (`consent_public_phone=true`).
+- Institution records are created and maintained by Super Admin in Manager Access. A manager assignment can then be issued to the institution.
+- Teacher changes are recorded in `section_manager_audit_logs` with target type `educational_institution`.
+- Public education pages show only institutions marked public or active and only active teacher profiles.
