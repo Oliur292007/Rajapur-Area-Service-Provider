@@ -27,9 +27,9 @@ const translations = {
   }
 };
 const categoryLinks = {
-  healthcare:'hospitals.html', education:'school-catagory.html', 'blood-donation':'blood.html',
-  transport:'buses.html', 'places-heritage':'places.html', 'emergency-contacts':'emergency.html',
-  'important-locations':'important-locations.html', 'rajapur-information':'general-info.html', 'local-services':'#'
+  healthcare:'category.html?slug=healthcare', education:'category.html?slug=education', 'blood-donation':'category.html?slug=blood-donation',
+  transport:'category.html?slug=transport', 'places-heritage':'category.html?slug=places-heritage', 'emergency-contacts':'category.html?slug=emergency-contacts',
+  'important-locations':'category.html?slug=important-locations', 'rajapur-information':'category.html?slug=rajapur-information', 'local-services':'category.html?slug=local-services'
 };
 const categoryIcons = {
   healthcare:'doctor-icon.png', education:'school.png', 'blood-donation':'blood.png',
