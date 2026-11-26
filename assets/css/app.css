@@ -102,3 +102,28 @@ html{scroll-behavior:smooth}img{max-width:100%}button,a,select,input,textarea{to
 .operator-schedule p{font-size:.82rem;line-height:1.55;color:var(--muted);margin:3px 0}
 .operator-no-schedules{font-size:.84rem;color:var(--muted);padding:8px 0}
 @media(max-width:680px){.operator-card{align-items:stretch}.operator-card-toggle{align-items:flex-start}.operator-card-action{font-size:.72rem;white-space:nowrap}.operator-schedule{padding:10px 0}}
+
+
+/* Healthcare facility cards and dedicated doctor/schedule pages */
+.healthcare-card .record-content{display:flex;flex-direction:column;align-items:flex-start}
+.healthcare-card h2{margin:7px 0 8px}
+.healthcare-details-link{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;width:100%;max-width:300px;min-height:42px;margin-top:12px;padding:9px 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);color:var(--brand);font-size:.86rem;font-weight:750;text-decoration:none}
+.healthcare-details-link:hover{border-color:var(--brand);transform:translateY(-1px)}
+.doctor-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 auto 16px;max-width:900px}
+.doctor-section-heading h2{margin:0 0 5px;font-size:clamp(1.3rem,3vw,1.8rem)}
+.doctor-section-heading p,.facility-address{color:var(--muted);font-size:.9rem;margin:0}
+.doctor-search{max-width:900px;margin:0 auto 22px}
+.doctor-grid{max-width:1100px;margin:0 auto}
+.doctor-card .record-content{width:100%}
+.doctor-image{min-width:116px;max-height:180px;object-fit:cover}
+.doctor-specialty{font-weight:750;color:var(--brand)!important}
+.doctor-schedules{width:100%;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.doctor-schedules h3{font-size:.94rem;margin:0 0 8px}
+.doctor-schedule{display:grid;grid-template-columns:minmax(100px,.7fr) 1fr;gap:5px 12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.86rem}
+.doctor-schedule:last-child{border-bottom:0}
+.doctor-schedule strong{color:var(--text)}
+.doctor-schedule span{color:var(--muted)}
+.doctor-schedule p{grid-column:1/-1;margin:0!important}
+.doctor-schedule .record-call{grid-column:1/-1;margin:0;min-height:32px}
+.doctor-no-schedule{font-size:.84rem;color:var(--muted);padding:8px 0}
+@media(max-width:680px){.doctor-section-heading{align-items:flex-start;flex-direction:column;gap:4px}.doctor-image{width:84px;min-width:84px;max-height:150px}.doctor-schedule{grid-template-columns:1fr;gap:3px}}
