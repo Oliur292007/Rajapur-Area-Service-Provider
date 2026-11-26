@@ -140,7 +140,7 @@ async function runGlobalSearch(rawTerm) {
   const pattern = searchOr(['name','description'], term);
   const jobs = [
     supabase.from('categories').select('name,slug,description').eq('is_active',true).or(pattern).limit(5).then(r => ({kind:'category',slug:null,rows:r.data||[],error:r.error})),
-    supabase.from('listings').select('title,summary,address,category_id').eq('status','published').or(searchOr(['title','summary','description','address','union_name'],term)).limit(8).then(r => ({kind:'listing',slug:'local-services',rows:r.data||[],error:r.error})),
+    supabase.from('listings').select('title,summary,address,category_id,categories(slug)').eq('status','published').or(searchOr(['title','summary','description','address','union_name'],term)).limit(8).then(r => ({kind:'listing',slug:'local-services',rows:r.data||[],error:r.error})),
     supabase.from('doctors').select('full_name,specialty,qualifications,bio').eq('is_active',true).or(searchOr(['full_name','specialty','qualifications','bio'],term)).limit(5).then(r => ({kind:'doctor',slug:'healthcare',rows:r.data||[],error:r.error})),
     supabase.from('services').select('title,description,service_area').eq('status','published').or(searchOr(['title','description','service_area'],term)).limit(5).then(r => ({kind:'service',slug:'local-services',rows:r.data||[],error:r.error})),
     supabase.from('transport_operators').select('name,description').eq('is_active',true).or(searchOr(['name','description'],term)).limit(4).then(r => ({kind:'transport',slug:'transport',rows:r.data||[],error:r.error})),
@@ -158,7 +158,7 @@ async function runGlobalSearch(rawTerm) {
       for (const row of group.rows) {
         let title = row.title || row.name || row.full_name || row.metric_label || row.route_name || '';
         let detail = row.summary || row.specialty || row.description || row.address || row.destination || row.topic || row.organization_name || '';
-        const slug = group.kind === 'category' ? row.slug : group.slug;
+        const slug = group.kind === 'category' ? row.slug : (group.kind === 'listing' ? row.categories?.slug || group.slug : group.slug);
         if (group.kind === 'category') detail = row.description || '';
         items.push({title,detail,kind:group.kind,slug});
       }
