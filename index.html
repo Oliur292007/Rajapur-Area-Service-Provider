@@ -1,166 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#333" media="(prefers-color-scheme: dark)">
-  <title>Area Services</title>
-  <link rel="stylesheet" href="main.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Find local services, healthcare, education, transport and important information in Rajapur, Jhalakathi.">
+  <title>Rajapur Area Services</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="assets/css/app.css">
 </head>
-
 <body>
-  <!-- Include Header -->
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="Rajapur Area Services Logo">
-      <h1>Rajapur Area Services</h1>
-    </div>
-    <nav class="sidebar-menu">
-      <button class="sidebar-button" id="sidebarToggle" aria-label="Toggle Menu">Menu</button>
-      <div class="sidebar-content" id="sidebarContent" aria-hidden="true">
-        <button class="close-button" id="closeSidebar" aria-label="Close Menu">&times;</button>
-        <ul>
-          <li><a href="index.html" aria-label="Go to Home Page">Home</a></li>
-          <li><a href="hospitals.html" aria-label="View Doctors">Doctors</a></li>
-          <li><a href="school-catagory.html" aria-label="View Doctors">Schools</a></li>
-          <li><a href="collages.html" aria-label="View Doctors">Colleges</a></li>
-          <li><a href="blood.html" aria-label="View Doctors">Blood Donators</a></li>
-          <li><a href="buses.html" aria-label="View Bus Schedules">Bus Schedules</a></li>
-          <li><a href="places.html" aria-label="View Place of Interest">Place of Interest</a></li>
-          <li><a href="rajapur-haritage.html" aria-label="View Heritage of Rajapur">Heritage Of Rajapur</a></li>
-          <li><a href="emergency.html" aria-label="View Doctors">Emergency Contacts</a></li>
-          <li><a href="important-locations.html" aria-label="View Important Locations">Important Locations</a></li>
-          <li><a href="about.html" aria-label="Learn More About Us">About</a></li>
-        </ul>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Rajapur Area Services home">
+        <img src="logo.png" alt="" class="brand-logo">
+        <span class="brand-copy"><strong>Rajapur</strong><small>Area Services</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="index.html" data-i18n="navHome">Home</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="emergency.html" data-i18n="navEmergency">Emergency</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button language-toggle" id="languageToggle" type="button" aria-label="Change language">বাংলা</button>
+        <label class="theme-control">
+          <span class="sr-only" data-i18n="themeLabel">Theme</span>
+          <select id="themeSelect" aria-label="Theme">
+            <option value="system" data-i18n="themeSystem">System</option>
+            <option value="light" data-i18n="themeLight">Light</option>
+            <option value="dark" data-i18n="themeDark">Dark</option>
+          </select>
+        </label>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span><span class="sr-only" data-i18n="menu">Menu</span></button>
       </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile navigation">
+      <a href="index.html" data-i18n="navHome">Home</a>
+      <a href="about.html" data-i18n="navAbout">About</a>
+      <a href="emergency.html" data-i18n="navEmergency">Emergency</a>
     </nav>
   </header>
 
-  <main>
-    <section class="intro">
-      <h2>Welcome to Rajapur Area Services</h2>
-      <p>Find everything you need in one place!</p>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-glow hero-glow-one"></div><div class="hero-glow hero-glow-two"></div>
+      <div class="hero-content">
+        <span class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">YOUR LOCAL DIRECTORY</span></span>
+        <h1 data-i18n="heroTitle">Everything in Rajapur,<br><em>all in one place.</em></h1>
+        <p data-i18n="heroText">Discover trusted local information, essential services and useful places around your community.</p>
+        <div class="hero-search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="categorySearch" type="search" autocomplete="off" placeholder="Search services and categories..." data-i18n-placeholder="searchPlaceholder">
+          <kbd>⌘ K</kbd>
+        </div>
+        <p class="hero-location"><span aria-hidden="true">⌖</span> <span data-i18n="location">Rajapur, Jhalakathi, Bangladesh</span></p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+        <div class="art-card art-card-main"><span class="art-pin">⌖</span><div class="art-lines"><i></i><i></i><i></i></div><b>RAJAPUR</b><small>JHALAKATHI · BANGLADESH</small></div>
+        <div class="art-chip chip-one">✦ <span>Local services</span></div>
+        <div class="art-chip chip-two">⌂ <span>Community</span></div>
+        <div class="art-chip chip-three">◎ <span>Explore nearby</span></div>
+      </div>
     </section>
-    <section class="card-container">
-      <div class="card">
-        <a href="hospitals.html">
-          <img src="doctor-icon.png" alt="Doctors">
-          <h3>Doctors</h3>
-          <p>Find medical specialists in Rajapur.</p>
-        </a>
+
+    <section class="directory-section section-wrap" aria-labelledby="directoryTitle">
+      <div class="section-heading">
+        <div><span class="section-kicker" data-i18n="directoryKicker">EXPLORE THE DIRECTORY</span><h2 id="directoryTitle" data-i18n="directoryTitle">What are you looking for?</h2><p data-i18n="directoryText">Browse services and information available in Rajapur.</p></div>
+        <span class="live-indicator"><i></i><span data-i18n="liveData">Live directory</span></span>
       </div>
-      <div class="card">
-        <a href="school-catagory.html">
-          <img src="school.png" alt="Bus Schedules">
-          <h3>Schools</h3>
-          <p>Check schools in Rajapur.</p>
-        </a>
+      <div id="categoryGrid" class="category-grid" aria-live="polite">
+        <div class="loading-state"><span class="loader"></span><span data-i18n="loading">Loading categories…</span></div>
       </div>
-      <div class="card">
-        <a href="collages.html">
-          <img src="collage.png" alt="Bus Schedules">
-          <h3>Colleges</h3>
-          <p>Check colleges in Rajapur.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="blood.html">
-          <img src="blood.png" alt="Historical Places">
-          <h3>Blood Donators</h3>
-          <p>Click to see blood donators in Rajapur.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="buses.html">
-          <img src="bus-icon.png" alt="Bus Schedules">
-          <h3>Bus Schedules</h3>
-          <p>Check bus routes and timings from Rajapur.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="places.html">
-          <img src="tourism.png" alt="Historical Places">
-          <h3>Place of Interest</h3>
-          <p>Click to see Historical Places in Rajapur.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="rajapur-haritage.html">
-          <img src="heritage.png" alt="Historical Places">
-          <h3>Heritage Of Rajapur</h3>
-          <p>Click to see heritages of Rajapur.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="emergency.html">
-          <img src="emergency-icon.png" alt="Emergency">
-          <h3>Emergency</h3>
-          <p>Quick access to emergency contacts.</p>
-        </a>
-      </div>
-      <div class="card">
-        <a href="important-locations.html">
-          <img src="important.png" alt="Historical Places">
-          <h3>Important Location</h3>
-          <p>Click to see blood donators in Rajapur.</p>
-        </a>
-      </div>
+      <p id="categoryStatus" class="status-message" role="status"></p>
+    </section>
+
+    <section class="community-strip section-wrap">
+      <div class="community-icon">✳</div>
+      <div><span class="section-kicker" data-i18n="communityKicker">BUILT FOR THE COMMUNITY</span><h2 data-i18n="communityTitle">A more connected Rajapur.</h2><p data-i18n="communityText">A shared place to discover local knowledge and essential services.</p></div>
+      <a class="text-link" href="about.html"><span data-i18n="learnMore">Learn more</span> <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
-  <!-- Include Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <h2>Rajapur Area Service App</h2>
-        <p>by</p>
-        <h3>Rajapur Pilot Science and Technology Club (RPST)</h3>
-        <div class="contact-info">
-          <p>Contact with us:</p>
-          <p>E-mail: <a href="mailto:rpst.rajapur@gmail.com">rpst.rajapur@gmail.com</a></p>
-          <p>Phone:</p>
-          <ul>
-            <li><a href="tel:+8801912641577">+8801912641577</a></li>
-            <li><a href="tel:+8801752482715">+8801752482715</a></li>
-            <li><a href="tel:+8801622781753">+8801622781753</a></li>
-            <li><a href="tel:+8801307292446">+8801307292446</a></li>
-          </ul>
-          <p>or visit our social media page...</p>
-        </div>
-      </div>
-
-      <div class="footer-right">
-        <div class="social-media">
-          <p>Social Media</p>
-          <a href="https://facebook.com/profile.php?id=61554547630245"><img src="facebook-icon.png" alt="Facebook"></a>
-          <a href="https://www.youtube.com/@rpst2022"><img src="youtube-icon.png" alt="YouTube"></a>
-        </div>
-        <div class="icon-partner">
-          <p>Our icon partner</p>
-          <a href="https://www.flaticon.com/" target="_blank">
-            <img src="flaticon-logo.png" alt="Flaticon Logo">
-          </a>
-        </div>
-        <div class="info-partner">
-          <p>Our information partner</p>
-          <a href="https://rajapur.jhalakathi.gov.bd/" target="_blank">
-            <img src="R.png" alt="Bangladesh Logo">
-            <p1>Rajapur Upazila</p1>
-          </a>
-          <a href="https://bn.wikipedia.org/" target="_blank">
-            <img src="wikipedia.png" alt="Wikipedia Logo">
-            <p1>Wikipedia</p1>
-          </a>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <div class="footer-main section-wrap">
+      <div class="footer-brand"><a class="brand footer-logo" href="index.html"><img src="logo.png" alt=""><span class="brand-copy"><strong>Rajapur</strong><small>Area Services</small></span></a><p data-i18n="footerAbout">Connecting people with the information and services that matter locally.</p><div class="social-links"><a href="https://facebook.com/profile.php?id=61554547630245" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a><a href="https://www.youtube.com/@rpst2022" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a></div></div>
+      <div class="footer-column"><h3 data-i18n="quickLinks">Quick links</h3><a href="index.html" data-i18n="navHome">Home</a><a href="about.html" data-i18n="navAbout">About us</a><a href="emergency.html" data-i18n="navEmergency">Emergency contacts</a></div>
+      <div class="footer-column"><h3 data-i18n="contact">Contact</h3><a href="mailto:rpst.rajapur@gmail.com">rpst.rajapur@gmail.com</a><a href="https://rajapur.jhalakathi.gov.bd/" target="_blank" rel="noopener noreferrer" data-i18n="upazilaSite">Rajapur Upazila</a><span>Rajapur Pilot Science and Technology Club (RPST)</span></div>
     </div>
-    <p class="footer-copyright">
-      &copy; 2024 Rajapur Area Services by RPST. All Rights Reserved.
-    </p>
+    <div class="footer-bottom section-wrap"><span>© <span id="currentYear"></span> Rajapur Area Services · RPST</span><span>Developed by <strong>MD Oliur Rahman</strong></span></div>
   </footer>
-  <script src="main.js"></script>
+  <script type="module" src="assets/js/app.js"></script>
 </body>
-
 </html>
