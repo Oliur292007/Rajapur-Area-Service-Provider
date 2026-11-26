@@ -183,7 +183,8 @@ function handleGlobalSearch(value) {
   if (value.trim().length < 2) { panel.hidden = true; document.getElementById('categorySearch').setAttribute('aria-expanded','false'); return; }
   searchDebounce = setTimeout(() => runGlobalSearch(value), 280);
 }
-\nfunction setupControls() {
+
+function setupControls() {
   const themeSelect = document.getElementById('themeSelect');
   const savedTheme = localStorage.getItem('rasp-theme') || 'system';
   themeSelect.value = savedTheme;
