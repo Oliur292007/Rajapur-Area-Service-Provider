@@ -30,6 +30,14 @@ Deno.serve(async(req:Request)=>{
   return json({operators:ops.data||[],organizations:orgs.data||[],educationalInstitutions:schools.data||[],assignments:users});
  }
  let body:any;try{body=await req.json();}catch{return json({error:"Invalid JSON"},400);}
+ if(req.method==="POST"&&body.action==="save_institution"){
+  const id=String(body.id||"").trim(),name=String(body.name||"").trim();
+  if(!name||name.length>180|| (id&&!/^[0-9a-f-]{36}$/i.test(id)))return json({error:"A valid institution name is required"},400);
+  const payload={name,institution_type:String(body.institution_type||"").trim()||null,address:String(body.address||"").trim()||null,phone:String(body.phone||"").trim()||null,website_url:String(body.website_url||"").trim()||null,description:String(body.description||"").trim()||null,is_public:body.is_public===true,is_active:body.is_active===true,updated_at:new Date().toISOString()};
+  if(payload.website_url){try{const u=new URL(payload.website_url);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{return json({error:"Website URL must use HTTP or HTTPS"},400);}}
+  const q=id?await db.from("educational_institutions").update(payload).eq("id",id).select().single():await db.from("educational_institutions").insert(payload).select().single();
+  if(q.error)return json({error:"Could not save institution"},500);return json({ok:true,institution:q.data});
+ }
  if(req.method==="POST"){
   const email=String(body.email||"").trim().toLowerCase(),targetType=String(body.targetType||""),targetId=String(body.targetId||"");
   if(!email.includes("@")||!allowedTarget.has(targetType)||!/^[0-9a-f-]{36}$/i.test(targetId))return json({error:"Valid email and target are required"},400);
@@ -48,6 +56,7 @@ Deno.serve(async(req:Request)=>{
   return json({ok:true,assignment:data});
  }
  const id=String(body.id||"");if(!/^[0-9a-f-]{36}$/i.test(id))return json({error:"Invalid assignment id"},400);
+ if(body.action==="delete_institution"){const {error}=await db.from("educational_institutions").delete().eq("id",id);if(error)return json({error:"Could not delete institution"},500);return json({ok:true});}
  if(body.action==="revoke"){
   const {error}=await db.from("section_manager_assignments").update({is_active:false,updated_at:new Date().toISOString()}).eq("id",id);
   if(error)return json({error:"Could not revoke assignment"},500);return json({ok:true});
