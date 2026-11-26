@@ -1,7 +1,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const supabase = createClient('https://kapuhxccffmjgeszixxh.supabase.co','sb_publishable_pr-6-lthGkKlq8RNoxwmqg_X4pqblAV');
 const params = new URLSearchParams(location.search);
-const slug = params.get('slug') || '';
+const slug = params.get('slug') || '';\nconst initialQuery = params.get('q') || '';
 let records = [];
 let language = localStorage.getItem('rasp-language') || 'en';
 const copy = {
@@ -40,5 +40,5 @@ else if(slug==='rajapur-information'){const {data,error}=await supabase.from('ar
 else if(slug==='local-services'){const {data,error}=await supabase.from('services').select('id,title,description,price_amount,price_type,service_area,cover_image_url').eq('status','published').order('title');if(error)throw error;rows=data.map(x=>({title:x.title,description:x.description,meta:[x.service_area,x.price_amount!=null?x.price_amount+' · '+x.price_type:null].filter(Boolean).join(' · '),image:x.cover_image_url,tag:'Published service'}));}
 return rows;}
 async function init(){const theme=$('themeSelect'),saved=localStorage.getItem('rasp-theme')||'system';theme.value=saved;applyTheme(saved);theme.addEventListener('change',()=>{localStorage.setItem('rasp-theme',theme.value);applyTheme(theme.value);});$('languageToggle').addEventListener('click',()=>{language=language==='en'?'bn':'en';localStorage.setItem('rasp-language',language);applyLanguage();});$('recordSearch').addEventListener('input',e=>renderRecords(e.target.value));const menu=$('menuToggle'),nav=$('mobileNav');menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));nav.hidden=open;});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.hidden=true;menu.setAttribute('aria-expanded','false');}));$('currentYear').textContent=new Date().getFullYear();matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if((localStorage.getItem('rasp-theme')||'system')==='system')applyTheme('system');});applyLanguage();
-try{const {data:category,error}=await supabase.from('categories').select('id,name,slug,description').eq('slug',slug).eq('is_active',true).maybeSingle();if(error)throw error;if(!category)throw new Error('Unknown category');records=await fetchData(category);renderRecords('');}catch(error){console.error('Directory query failed',error);$('recordGrid').innerHTML='<div class="error-state"></div>';$('recordGrid').firstElementChild.textContent=copy[language].loadError;$('directoryStatus').textContent=copy[language].errorCategory;}}
+try{const {data:category,error}=await supabase.from('categories').select('id,name,slug,description').eq('slug',slug).eq('is_active',true).maybeSingle();if(error)throw error;if(!category)throw new Error('Unknown category');records=await fetchData(category);renderRecords(initialQuery);}catch(error){console.error('Directory query failed',error);$('recordGrid').innerHTML='<div class="error-state"></div>';$('recordGrid').firstElementChild.textContent=copy[language].loadError;$('directoryStatus').textContent=copy[language].errorCategory;}}
 init();
