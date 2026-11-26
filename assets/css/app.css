@@ -129,3 +129,6 @@ html{scroll-behavior:smooth}img{max-width:100%}button,a,select,input,textarea{to
 @media(max-width:680px){.doctor-section-heading{align-items:flex-start;flex-direction:column;gap:4px}.doctor-image{width:84px;min-width:84px;max-height:150px}.doctor-schedule{grid-template-columns:1fr;gap:3px}}
 
 .facility-contact{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;margin-top:10px}.facility-contact .record-call,.facility-contact .record-external{margin-top:0}
+
+/* Education institution and teacher directory */
+.education-card .record-content{display:flex;flex-direction:column;align-items:flex-start}.education-details-link{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;width:100%;max-width:300px;min-height:42px;margin-top:12px;padding:9px 13px;border:1px solid var(--line);border-radius:11px;background:var(--surface-soft);color:var(--brand);font-size:.86rem;font-weight:750;text-decoration:none}.education-details-link:hover{border-color:var(--brand);transform:translateY(-1px)}.teacher-card .record-content{width:100%}.teacher-image{min-width:116px;max-height:180px;object-fit:cover}.teacher-designation{font-weight:750;color:var(--brand)!important}@media(max-width:680px){.teacher-image{width:84px;min-width:84px;max-height:150px}}
