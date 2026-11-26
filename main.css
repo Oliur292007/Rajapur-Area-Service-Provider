@@ -1371,3 +1371,15 @@ footer {
 .footer-right .info-partner img {
   filter: brightness(0.8);
 }
+
+/* Header brand mark sizing fix: prevent wide source logos from stretching the header. */
+header .logo img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  max-height: 48px;
+  flex: 0 0 48px;
+  object-fit: contain;
+}
