@@ -35,7 +35,6 @@
     'land-and-revenue-related.html': ['rajapur-information', 'land revenue'],
     'cooperative.html': ['rajapur-information', 'cooperative'],
     'general-info.html': ['rajapur-information', ''],
-    'about.html': ['rajapur-information', ''],
     'communication.html': ['important-locations', '']
   };
   const file = location.pathname.split('/').pop();
