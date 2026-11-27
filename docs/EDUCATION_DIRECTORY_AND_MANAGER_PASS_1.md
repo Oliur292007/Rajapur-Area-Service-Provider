@@ -66,3 +66,10 @@ Migrations:
 4. Register the manager account through `/manager/`.
 5. Assign that account to the institution with the required permissions.
 6. Manager adds teacher profiles as drafts and publishes only confirmed records.
+## QA follow-up — 2026-11-27
+
+- Fixed the Super Admin Edge Function target lookup so `educational_institution` assignments validate against `educational_institutions` (rather than `organizations`). Deployed `section-manager-admin` version 5 with JWT verification enabled.
+- Fixed the public teacher contact renderer: `public_teachers` already exposes only consent-backed phone numbers, so the institution page now renders a phone link whenever the safe view returns a phone value.
+- Manager signup now maps Supabase's built-in email rate-limit response to a localized Bangla/English message. No Supabase Auth rate-limit, SMTP, or confirmation settings were changed.
+- Live data inventory at this check: 46 institutions; one public/active institution (Rajapur Model Pilot High School); zero teacher profiles; zero education manager assignments. The existing institution record was not changed during this QA pass.
+- Browser-level visual testing and a real non-admin manager sign-in/add/edit/delete test still need to be completed. The earlier transaction-level RLS simulation remains the available backend test; it does not replace a real account E2E test.
