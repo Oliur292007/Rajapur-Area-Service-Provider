@@ -45,8 +45,10 @@ Deno.serve(async(req:Request)=>{
   permissions.view=true;
   const targetCheck=targetType==="transport_operator"
     ? await db.from("transport_operators").select("id").eq("id",targetId).maybeSingle()
-    : await db.from("organizations").select("id").eq("id",targetId).maybeSingle();
-  if(targetCheck.error||!targetCheck.data)return json({error:"Selected organization or operator was not found"},404);
+    : targetType==="educational_institution"
+      ? await db.from("educational_institutions").select("id").eq("id",targetId).maybeSingle()
+      : await db.from("organizations").select("id").eq("id",targetId).maybeSingle();
+  if(targetCheck.error||!targetCheck.data)return json({error:"Selected manager target was not found"},404);
   const users=await db.auth.admin.listUsers({page:1,perPage:1000});
   if(users.error)return json({error:"Could not look up user account"},500);
   const targetUser=users.data.users.find((u:any)=>u.email?.toLowerCase()===email);
