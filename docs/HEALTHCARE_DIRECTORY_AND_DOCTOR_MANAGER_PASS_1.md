@@ -21,3 +21,8 @@
 - Healthcare page now reads from the safe views instead of base doctor/schedule tables.
 - Browser end-to-end test with a real non-admin manager account remains pending.
 - Existing doctor, schedule and clinic data were not bulk-published or activated.
+
+
+## RLS boundary follow-up
+- Direct anonymous reads of doctor and schedule safe columns are also constrained to active doctors/schedules whose parent organization is public or active.
+- Applied in `20261127111000_restrict_public_doctor_rls_to_listed_facilities.sql`.
